@@ -4,7 +4,7 @@ defmodule RelaxPhoenix.V1.DebugErrorView do
   def render(_, assigns) do
     render_api_error(%{
       status: "#{assigns.conn.status}",
-      title: Map.get(assigns.reason, :message, "Unknown error occurred")
+      title: "#{Map.get(assigns.reason, :__struct__)}: #{Map.get(assigns.reason, :message, "Unknown error occurred")}"
     })
   end
 
