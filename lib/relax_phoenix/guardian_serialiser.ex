@@ -11,7 +11,7 @@ defmodule RelaxPhoenix.GuardianSerialiser do
   def from_token("User:" <> id) do
     case Repo.get(User, id) do
      user -> { :ok, user }
-     nil -> raise Exceptions.NotAuthenticatedException
+     nil -> { :error, "User not found" }
     end
   end
   def from_token(_), do: { :error, "Unknown resource type" }

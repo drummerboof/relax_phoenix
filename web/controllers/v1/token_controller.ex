@@ -10,7 +10,9 @@ defmodule RelaxPhoenix.V1.TokenController do
   def create(conn, params = %{}) do
     case Authentication.authenticate(params) do
       {:ok, user} ->
-        {:ok, jwt, _full_claims} = user |> Guardian.encode_and_sign(:token)
+        jwt = conn
+        |> Guardian.Plug.api_sign_in(user)
+        |> Guardian.Plug.current_token
         render conn, "show.json", data: %{jwt: jwt, user: user}
       :error ->
         raise Exceptions.InvalidCredentialsException
