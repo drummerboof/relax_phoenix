@@ -8,7 +8,7 @@ defmodule RelaxPhoenix.Exceptions do
 
   defmodule InvalidCredentialsException do
     @moduledoc """
-    Exception raised when user is not authenticated
+    Exception raised when user posts incorrect login crendentials
     """
     defexception plug_status: 403, message: "Invalid authentication credentials"
   end
