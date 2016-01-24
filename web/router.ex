@@ -1,26 +1,14 @@
 defmodule RelaxPhoenix.Router do
   use RelaxPhoenix.Web, :router
 
-  pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
-  end
-
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json-api"]
+    plug JaSerializer.ContentTypeNegotiation
+    plug JaSerializer.Deserializer
   end
 
-  scope "/", RelaxPhoenix do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
+  scope "/v1", RelaxPhoenix.V1, as: :v1 do
+    pipe_through :api # Use the API stack
+    resources "/users", UserController
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", RelaxPhoenix do
-  #   pipe_through :api
-  # end
 end

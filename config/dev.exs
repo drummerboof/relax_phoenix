@@ -8,7 +8,8 @@ use Mix.Config
 # with brunch.io to recompile .js and .css sources.
 config :relax_phoenix, RelaxPhoenix.Endpoint,
   http: [port: 4000],
-  debug_errors: true,
+  debug_errors: false,
+  render_errors: [view: RelaxPhoenix.V1.DebugErrorView, default_format: "json-api", accepts: ~w(json-api)],
   code_reloader: true,
   cache_static_lookup: false,
   check_origin: false,
@@ -18,7 +19,6 @@ config :relax_phoenix, RelaxPhoenix.Endpoint,
 config :relax_phoenix, RelaxPhoenix.Endpoint,
   live_reload: [
     patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{web/views/.*(ex)$},
       ~r{web/templates/.*(eex)$}

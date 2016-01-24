@@ -19,7 +19,7 @@ defmodule RelaxPhoenix.Mixfile do
   def application do
     [mod: {RelaxPhoenix, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :guardian, :guardian_db, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,6 +36,11 @@ defmodule RelaxPhoenix.Mixfile do
      {:phoenix_html, "~> 2.3"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
+     {:guardian, "~> 0.9.0"},
+     {:guardian_db, "~> 0.4.0"},
+     {:ja_serializer, "~> 0.6.3"},
+     {:comeonin, "~> 2.0"},
+     {:scrivener, "~> 1.1"},
      {:cowboy, "~> 1.0"}]
   end
 
