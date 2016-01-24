@@ -3,10 +3,16 @@ defmodule RelaxPhoenix.GuardianSerialiser do
 
   alias RelaxPhoenix.Repo
   alias RelaxPhoenix.User
+  alias RelaxPhoenix.Exceptions
 
   def for_token(user = %User{}), do: { :ok, "User:#{user.id}" }
   def for_token(_), do: { :error, "Unknown resource type" }
 
-  def from_token("User:" <> id), do: { :ok, Repo.get(User, id) }
+  def from_token("User:" <> id) do
+    case Repo.get(User, id) do
+     user -> { :ok, user }
+     nil -> raise Exceptions.NotAuthenticatedException
+    end
+  end
   def from_token(_), do: { :error, "Unknown resource type" }
 end
