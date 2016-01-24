@@ -7,7 +7,6 @@ defmodule RelaxPhoenix.Router do
     plug JaSerializer.Deserializer
     plug Guardian.Plug.VerifyHeader
     plug Guardian.Plug.LoadResource
-    plug RelaxPhoenix.Plug.EnsureResource
   end
 
   scope "/v1", RelaxPhoenix.V1, as: :v1 do

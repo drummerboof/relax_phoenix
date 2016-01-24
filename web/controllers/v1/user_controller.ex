@@ -1,5 +1,6 @@
 defmodule RelaxPhoenix.V1.UserController do
   use RelaxPhoenix.Web, :controller
+  plug RelaxPhoenix.Plug.EnsureResource
   plug Guardian.Plug.EnsureAuthenticated, handler: RelaxPhoenix.V1.TokenController
 
   def index(conn, params) do
