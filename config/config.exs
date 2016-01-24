@@ -39,7 +39,8 @@ config :guardian, Guardian,
   ttl: { 30, :days },
   verify_issuer: true, # optional
   secret_key: "boCV1vyfHbFp4zFC6ZkmkoIDC9jw8kHyAhsV3g8WfZG++FUGVa0yH5D1HLbaddrosBlynKSEgyA4p/vBcQb/mQ",
-  serializer: RelaxPhoenix.GuardianSerializer
+  serializer: RelaxPhoenix.GuardianSerialiser,
+  hooks: GuardianDb
 
 # Configure GuardianDb
 config :guardian_db, GuardianDb,
