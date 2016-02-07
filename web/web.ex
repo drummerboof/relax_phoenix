@@ -34,6 +34,7 @@ defmodule RelaxPhoenix.Web do
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]
 
+      import RelaxPhoenix.RequireParams
       import RelaxPhoenix.Router.Helpers
       import RelaxPhoenix.Gettext
     end

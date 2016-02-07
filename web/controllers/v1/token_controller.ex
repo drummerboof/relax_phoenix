@@ -3,7 +3,9 @@ defmodule RelaxPhoenix.V1.TokenController do
   alias RelaxPhoenix.Exceptions
   alias RelaxPhoenix.Authentication
 
-  def unauthenticated(conn, _params) do
+  plug :require_params, ["email", "password"] when action in [:create]
+
+  def unauthenticated(_, _params) do
     raise Exceptions.NotAuthenticatedException
   end
 
